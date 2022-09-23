@@ -1,5 +1,5 @@
 {
-  "name": "react-configurable-carousel",
+  "name": "@daniel-ilin/react-configurable-carousel",
   "version": "0.0.1",
   "description": "A simple and responsive configurable 2D/3D carousel React component",
   "scripts": {
@@ -29,5 +29,8 @@
     "@rollup/plugin-typescript": "^8.3.3",
     "react-swipeable": "^7.0.0",
     "sass": "^1.55.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/daniel-ilin"
   }
 }
