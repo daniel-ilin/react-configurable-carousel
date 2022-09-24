@@ -520,4 +520,3 @@ const Carousel = (props) => {
 };
 
 export { Carousel };
-//# sourceMappingURL=index.js.map

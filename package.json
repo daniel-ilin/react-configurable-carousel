@@ -1,6 +1,6 @@
 {
   "name": "@daniel-ilin/react-configurable-carousel",
-  "version": "0.0.41",
+  "version": "0.0.44",
   "description": "A simple and responsive configurable 2D/3D carousel React component",
   "scripts": {
     "rollup": "rollup -c"
@@ -28,13 +28,11 @@
     "dist"
   ],
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "react-swipeable": "^7.0.0",
-    "sass": "^1.55.0"
-  },
   "peerDependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-swipeable": "^7.0.0",
+    "sass": "^1.55.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/daniel-ilin"
