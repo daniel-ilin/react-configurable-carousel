@@ -1,5 +1,5 @@
-import React from "react";
-import { useCallback, useEffect, useState } from "react";
+import * as React from "react";
+const { useCallback, useEffect, useState } = React;
 import { Arrow } from "../Arrow/Arrow";
 import styles from "./Carousel.module.scss";
 import { CarouselItem } from "./CarouselItem/CarouselItem";

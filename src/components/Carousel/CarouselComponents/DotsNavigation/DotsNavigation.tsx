@@ -1,6 +1,6 @@
 import { ListItem } from "../Carousel";
 import styles from "./DotsNavigation.module.scss";
-import React from "react";
+import * as React from "react";
 
 type DotsNavigationProps = {
   items: ListItem[] | undefined;
