@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ArrowIcon } from "../../icons";
+import arrowIconPath from "../../icons/ArrowIcon";
 import styles from "./Arrow.module.scss";
 
 type ArrowProps = {
@@ -10,7 +10,7 @@ export const Arrow = (props: ArrowProps) => {
   return (
     <>
       <div className={styles[props.direction]} style={{ cursor: "pointer" }}>
-        <ArrowIcon />
+        <img src={arrowIconPath} />
       </div>
     </>
   );

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var React$1 = require('react');
+var React = require('react');
 
 function _interopNamespace(e) {
     if (e && e.__esModule) return e;
@@ -22,7 +22,7 @@ function _interopNamespace(e) {
     return Object.freeze(n);
 }
 
-var React__namespace = /*#__PURE__*/_interopNamespace(React$1);
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -49,24 +49,7 @@ function __awaiter(thisArg, _arguments, P, generator) {
     });
 }
 
-var _path;
-
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-var SvgArrowRight = function SvgArrowRight(props) {
-  return /*#__PURE__*/React.createElement("svg", _extends({
-    width: 12,
-    height: 49,
-    fill: "none",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, props), _path || (_path = /*#__PURE__*/React.createElement("path", {
-    d: "m2.259 2.464 6.81 22.143-6.81 22.143",
-    stroke: "#9A9A9A",
-    strokeWidth: 4,
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  })));
-};
+var arrowIconPath = "data:image/svg+xml,%3Csvg%20width%3D%2212%22%20height%3D%2249%22%20viewBox%3D%220%200%2012%2049%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%3E%20%3Cpath%20d%3D%22M2.25879%202.46439L9.06902%2024.607L2.25879%2046.7496%22%20stroke%3D%22%239A9A9A%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -102,7 +85,7 @@ styleInject(css_248z$3);
 const Arrow = (props) => {
     return (React__namespace.createElement(React__namespace.Fragment, null,
         React__namespace.createElement("div", { className: styles$3[props.direction], style: { cursor: "pointer" } },
-            React__namespace.createElement(SvgArrowRight, null))));
+            React__namespace.createElement("img", { src: arrowIconPath }))));
 };
 
 var css_248z$2 = ".Carousel-module_verticalContainer__payvU {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n  padding-bottom: 20px;\n  z-index: 100;\n}\n\n.Carousel-module_horizontalContainer__K5hH2 {\n  position: relative;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n  height: 100%;\n  justify-content: space-between;\n  align-items: center;\n}\n.Carousel-module_horizontalContainer__K5hH2 button {\n  z-index: 100;\n}\n\n.Carousel-module_arrowButtonContainer__xW7M2 {\n  overflow: hidden;\n  background: none;\n  border: none;\n  cursor: pointer;\n  transition: all 0.1s;\n  margin: 0;\n  background-color: rgba(0, 0, 0, 0.2);\n}\n.Carousel-module_arrowButtonContainer__xW7M2:hover {\n  background-color: rgba(0, 0, 0, 0.6);\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_threed__xcY2m {\n  height: 92%;\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_flat__Z4cEC {\n  height: 100%;\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_left__21poc {\n  position: absolute;\n  left: 0px;\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_right__XvjKu {\n  position: absolute;\n  right: 0px;\n}\n\n.Carousel-module_navContainer__KFnsV {\n  margin-top: 20px;\n  z-index: 200;\n  width: auto;\n}\n.Carousel-module_navContainer__KFnsV.Carousel-module_inside__Ko54Z {\n  position: relative;\n  bottom: 72px;\n  padding: 4px;\n  mix-blend-mode: color-dodge;\n  border-radius: 8px;\n}\n\n.Carousel-module_swipeContainer__lDozS {\n  display: grid;\n  grid-template-columns: auto;\n  align-items: center;\n  justify-items: center;\n  width: 100%;\n  height: 100%;\n}\n\n.Carousel-module_itemContainer__yTu7G {\n  grid-column: 1;\n  grid-row: 1;\n  width: 0;\n  z-index: 0;\n  height: 100%;\n  opacity: 0;\n  transition: all 0.5s;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_threed__xcY2m {\n  width: 53%;\n  transform: scale(0.4);\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_flat__Z4cEC {\n  width: 100%;\n  transform: translateX(0%);\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_showing__9fo-5 {\n  opacity: 1;\n  z-index: 2;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_showing__9fo-5.Carousel-module_threed__xcY2m {\n  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);\n  transform: scale(1);\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_showing__9fo-5.Carousel-module_flat__Z4cEC {\n  animation: none;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_prev__ndFbQ.Carousel-module_threed__xcY2m {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(-80%) scale(0.92);\n  cursor: pointer;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_prev__ndFbQ.Carousel-module_flat__Z4cEC {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(-100%);\n  cursor: pointer;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_next__jDsrB.Carousel-module_threed__xcY2m {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(80%) scale(0.92);\n  cursor: pointer;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_next__jDsrB.Carousel-module_flat__Z4cEC {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(100%);\n  cursor: pointer;\n}\n\n.Carousel-module_avoid-clicks__Vre3z {\n  pointer-events: none;\n}\n\n@keyframes Carousel-module_opacityAnimation__N9Dhr {\n  0% {\n    opacity: 1;\n  }\n  25% {\n    opacity: 0.8;\n  }\n  100% {\n    opacity: 1;\n  }\n}";

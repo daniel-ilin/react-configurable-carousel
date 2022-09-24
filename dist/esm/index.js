@@ -1,4 +1,4 @@
-import * as React$1 from 'react';
+import * as React from 'react';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -25,24 +25,7 @@ function __awaiter(thisArg, _arguments, P, generator) {
     });
 }
 
-var _path;
-
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-var SvgArrowRight = function SvgArrowRight(props) {
-  return /*#__PURE__*/React.createElement("svg", _extends({
-    width: 12,
-    height: 49,
-    fill: "none",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, props), _path || (_path = /*#__PURE__*/React.createElement("path", {
-    d: "m2.259 2.464 6.81 22.143-6.81 22.143",
-    stroke: "#9A9A9A",
-    strokeWidth: 4,
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  })));
-};
+var arrowIconPath = "data:image/svg+xml,%3Csvg%20width%3D%2212%22%20height%3D%2249%22%20viewBox%3D%220%200%2012%2049%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%3E%20%3Cpath%20d%3D%22M2.25879%202.46439L9.06902%2024.607L2.25879%2046.7496%22%20stroke%3D%22%239A9A9A%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -76,9 +59,9 @@ var styles$3 = {"left":"Arrow-module_left__URzbG","right":"Arrow-module_right__G
 styleInject(css_248z$3);
 
 const Arrow = (props) => {
-    return (React$1.createElement(React$1.Fragment, null,
-        React$1.createElement("div", { className: styles$3[props.direction], style: { cursor: "pointer" } },
-            React$1.createElement(SvgArrowRight, null))));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: styles$3[props.direction], style: { cursor: "pointer" } },
+            React.createElement("img", { src: arrowIconPath }))));
 };
 
 var css_248z$2 = ".Carousel-module_verticalContainer__payvU {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  overflow: hidden;\n  padding-bottom: 20px;\n  z-index: 100;\n}\n\n.Carousel-module_horizontalContainer__K5hH2 {\n  position: relative;\n  display: flex;\n  flex-direction: row;\n  width: 100%;\n  height: 100%;\n  justify-content: space-between;\n  align-items: center;\n}\n.Carousel-module_horizontalContainer__K5hH2 button {\n  z-index: 100;\n}\n\n.Carousel-module_arrowButtonContainer__xW7M2 {\n  overflow: hidden;\n  background: none;\n  border: none;\n  cursor: pointer;\n  transition: all 0.1s;\n  margin: 0;\n  background-color: rgba(0, 0, 0, 0.2);\n}\n.Carousel-module_arrowButtonContainer__xW7M2:hover {\n  background-color: rgba(0, 0, 0, 0.6);\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_threed__xcY2m {\n  height: 92%;\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_flat__Z4cEC {\n  height: 100%;\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_left__21poc {\n  position: absolute;\n  left: 0px;\n}\n.Carousel-module_arrowButtonContainer__xW7M2.Carousel-module_right__XvjKu {\n  position: absolute;\n  right: 0px;\n}\n\n.Carousel-module_navContainer__KFnsV {\n  margin-top: 20px;\n  z-index: 200;\n  width: auto;\n}\n.Carousel-module_navContainer__KFnsV.Carousel-module_inside__Ko54Z {\n  position: relative;\n  bottom: 72px;\n  padding: 4px;\n  mix-blend-mode: color-dodge;\n  border-radius: 8px;\n}\n\n.Carousel-module_swipeContainer__lDozS {\n  display: grid;\n  grid-template-columns: auto;\n  align-items: center;\n  justify-items: center;\n  width: 100%;\n  height: 100%;\n}\n\n.Carousel-module_itemContainer__yTu7G {\n  grid-column: 1;\n  grid-row: 1;\n  width: 0;\n  z-index: 0;\n  height: 100%;\n  opacity: 0;\n  transition: all 0.5s;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_threed__xcY2m {\n  width: 53%;\n  transform: scale(0.4);\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_flat__Z4cEC {\n  width: 100%;\n  transform: translateX(0%);\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_showing__9fo-5 {\n  opacity: 1;\n  z-index: 2;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_showing__9fo-5.Carousel-module_threed__xcY2m {\n  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);\n  transform: scale(1);\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_showing__9fo-5.Carousel-module_flat__Z4cEC {\n  animation: none;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_prev__ndFbQ.Carousel-module_threed__xcY2m {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(-80%) scale(0.92);\n  cursor: pointer;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_prev__ndFbQ.Carousel-module_flat__Z4cEC {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(-100%);\n  cursor: pointer;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_next__jDsrB.Carousel-module_threed__xcY2m {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(80%) scale(0.92);\n  cursor: pointer;\n}\n.Carousel-module_itemContainer__yTu7G.Carousel-module_next__jDsrB.Carousel-module_flat__Z4cEC {\n  opacity: 1;\n  z-index: 1;\n  transform: translateX(100%);\n  cursor: pointer;\n}\n\n.Carousel-module_avoid-clicks__Vre3z {\n  pointer-events: none;\n}\n\n@keyframes Carousel-module_opacityAnimation__N9Dhr {\n  0% {\n    opacity: 1;\n  }\n  25% {\n    opacity: 0.8;\n  }\n  100% {\n    opacity: 1;\n  }\n}";
@@ -93,14 +76,14 @@ const CarouselItem = (props) => {
     const style = props.isShowing
         ? `${styles$1["overlay"]}`
         : `${styles$1["overlay"]} ${styles$1["outOfFocus"]}`;
-    return (React$1.createElement(React$1.Fragment, null,
-        React$1.createElement("div", { className: styles$1.imageContainer },
-            React$1.createElement("img", { className: styles$1.firstRowColumn, src: props.content, alt: "showcase project", style: {
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: styles$1.imageContainer },
+            React.createElement("img", { className: styles$1.firstRowColumn, src: props.content, alt: "showcase project", style: {
                     height: props.height,
                     width: "100%",
                     objectFit: "cover",
                 } }),
-            React$1.createElement("div", { className: style }))));
+            React.createElement("div", { className: style }))));
 };
 
 var css_248z = ".DotsNavigation-module_dotsContainer__DmLIK {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n}\n\n.DotsNavigation-module_dot__uAcx7 {\n  box-sizing: border-box;\n  width: 16px;\n  height: 16px;\n  background: none;\n  margin-left: 4px;\n  margin-right: 4px;\n  border-radius: 50%;\n  cursor: pointer;\n}";
@@ -108,8 +91,8 @@ var styles = {"dotsContainer":"DotsNavigation-module_dotsContainer__DmLIK","dot"
 styleInject(css_248z);
 
 const DotsNavigation = (props) => {
-    return (React$1.createElement(React$1.Fragment, null,
-        React$1.createElement("div", { className: styles.dotsContainer }, props.items &&
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: styles.dotsContainer }, props.items &&
             props.items.map((item, index) => {
                 let fillColor = props.dotNavigationFillColor
                     ? `${props.dotNavigationFillColor}`
@@ -123,7 +106,7 @@ const DotsNavigation = (props) => {
                         border: `1px solid ${outlineColor}`,
                         background: `${fillColor}`,
                     };
-                return (React$1.createElement("span", { className: styles["dot"], style: style, key: index, onClick: () => props.jumpToIndex(index) }));
+                return (React.createElement("span", { className: styles["dot"], style: style, key: index, onClick: () => props.jumpToIndex(index) }));
             }))));
 };
 
@@ -375,10 +358,10 @@ function updateTransientState(state, props, previousProps, attachTouch) {
 }
 function useSwipeable(options) {
     const { trackMouse } = options;
-    const transientState = React$1.useRef(Object.assign({}, initialState));
-    const transientProps = React$1.useRef(Object.assign({}, defaultProps));
+    const transientState = React.useRef(Object.assign({}, initialState));
+    const transientProps = React.useRef(Object.assign({}, defaultProps));
     // track previous rendered props
-    const previousProps = React$1.useRef(Object.assign({}, transientProps.current));
+    const previousProps = React.useRef(Object.assign({}, transientProps.current));
     previousProps.current = Object.assign({}, transientProps.current);
     // update current render props & defaults
     transientProps.current = Object.assign(Object.assign({}, defaultProps), options);
@@ -389,12 +372,12 @@ function useSwipeable(options) {
             transientProps.current[defaultKey] = defaultProps[defaultKey];
         }
     }
-    const [handlers, attachTouch] = React$1.useMemo(() => getHandlers((stateSetter) => (transientState.current = stateSetter(transientState.current, transientProps.current)), { trackMouse }), [trackMouse]);
+    const [handlers, attachTouch] = React.useMemo(() => getHandlers((stateSetter) => (transientState.current = stateSetter(transientState.current, transientProps.current)), { trackMouse }), [trackMouse]);
     transientState.current = updateTransientState(transientState.current, transientProps.current, previousProps.current, attachTouch);
     return handlers;
 }
 
-const { useCallback, useEffect, useState } = React$1;
+const { useCallback, useEffect, useState } = React;
 function delay(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
 }
@@ -493,21 +476,21 @@ const Carousel = (props) => {
         rotateCarouselHandler(dir);
         setAutoScrollClickDelay(true);
     };
-    return (React$1.createElement(React$1.Fragment, null,
-        React$1.createElement("div", { style: {
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { style: {
                 width: props.width,
                 height: props.height,
                 position: "relative",
             } },
-            React$1.createElement("div", { className: styles$2.verticalContainer },
-                React$1.createElement("div", { className: styles$2.horizontalContainer },
-                    props.arrows && (React$1.createElement("button", { onClick: () => {
+            React.createElement("div", { className: styles$2.verticalContainer },
+                React.createElement("div", { className: styles$2.horizontalContainer },
+                    props.arrows && (React.createElement("button", { onClick: () => {
                             clickHandler("L");
                         }, className: is3D
                             ? `${styles$2["arrowButtonContainer"]} ${styles$2["threed"]} ${styles$2["left"]}`
                             : `${styles$2["arrowButtonContainer"]} ${styles$2["flat"]}  ${styles$2["left"]}` },
-                        React$1.createElement(Arrow, { direction: "left" }))),
-                    React$1.createElement("div", Object.assign({ className: styles$2.swipeContainer }, handlers), showItems === null || showItems === void 0 ? void 0 : showItems.map((showItem, index) => {
+                        React.createElement(Arrow, { direction: "left" }))),
+                    React.createElement("div", Object.assign({ className: styles$2.swipeContainer }, handlers), showItems === null || showItems === void 0 ? void 0 : showItems.map((showItem, index) => {
                         let style = `${styles$2["itemContainer"]}`;
                         style += is3D ? ` ${styles$2["threed"]}` : ` ${styles$2["flat"]}`;
                         if (showItem.isSelected) {
@@ -515,25 +498,25 @@ const Carousel = (props) => {
                         }
                         else if (index === prevIndex) {
                             style += ` ${styles$2["prev"]}`;
-                            return (React$1.createElement("span", { className: style, key: index, onClick: () => clickHandler("L") },
-                                React$1.createElement(CarouselItem, { isShowing: showItem.isSelected, content: showItem.url, height: props.height })));
+                            return (React.createElement("span", { className: style, key: index, onClick: () => clickHandler("L") },
+                                React.createElement(CarouselItem, { isShowing: showItem.isSelected, content: showItem.url, height: props.height })));
                         }
                         else if (index === nextIndex) {
                             style += ` ${styles$2["next"]}`;
-                            return (React$1.createElement("span", { className: style, key: index, onClick: () => clickHandler("R") },
-                                React$1.createElement(CarouselItem, { isShowing: showItem.isSelected, content: showItem.url, height: props.height })));
+                            return (React.createElement("span", { className: style, key: index, onClick: () => clickHandler("R") },
+                                React.createElement(CarouselItem, { isShowing: showItem.isSelected, content: showItem.url, height: props.height })));
                         }
-                        return (React$1.createElement("span", { className: style, key: index },
-                            React$1.createElement(CarouselItem, { isShowing: showItem.isSelected, content: showItem.url, height: props.height })));
+                        return (React.createElement("span", { className: style, key: index },
+                            React.createElement(CarouselItem, { isShowing: showItem.isSelected, content: showItem.url, height: props.height })));
                     })),
-                    props.arrows && (React$1.createElement("button", { className: is3D
+                    props.arrows && (React.createElement("button", { className: is3D
                             ? `${styles$2["arrowButtonContainer"]} ${styles$2["threed"]} ${styles$2["right"]}`
                             : `${styles$2["arrowButtonContainer"]} ${styles$2["flat"]}  ${styles$2["right"]}`, onClick: () => clickHandler("R") },
-                        React$1.createElement(Arrow, { direction: "right" }))))),
-            props.dotsNavigation && (React$1.createElement("div", { className: props.dotsNavigationInside
+                        React.createElement(Arrow, { direction: "right" }))))),
+            props.dotsNavigation && (React.createElement("div", { className: props.dotsNavigationInside
                     ? `${styles$2["navContainer"]} ${styles$2["inside"]}`
                     : `${styles$2["navContainer"]}` },
-                React$1.createElement(DotsNavigation, { items: showItems, selectedIndex: showingIndex, jumpToIndex: jumpToIndexHandler, dotNavigationOutlineColor: (_a = props.dotNavigationOutlineColor) !== null && _a !== void 0 ? _a : "rgb(220,220,220,1)", dotNavigationFillColor: (_b = props.dotNavigationFillColor) !== null && _b !== void 0 ? _b : "rgb(220,220,220,1)" }))))));
+                React.createElement(DotsNavigation, { items: showItems, selectedIndex: showingIndex, jumpToIndex: jumpToIndexHandler, dotNavigationOutlineColor: (_a = props.dotNavigationOutlineColor) !== null && _a !== void 0 ? _a : "rgb(220,220,220,1)", dotNavigationFillColor: (_b = props.dotNavigationFillColor) !== null && _b !== void 0 ? _b : "rgb(220,220,220,1)" }))))));
 };
 
 export { Carousel };
