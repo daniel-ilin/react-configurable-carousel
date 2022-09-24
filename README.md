@@ -34,26 +34,16 @@ import { Carousel } from "@daniel-ilin/react-configurable-carousel";
 ### Options
 ```<Carousel />``` Takes the following props:
 
-```js
-arrows: boolean // Shows/hides navigation arrows
-
-dotsNavigation: boolean // Shows/hides navigation dots
-
-dotsNavigationInside?: boolean // Places navigation dots inside of carousel (Defaults to false)
-
-dotNavigationOutlineColor?: string // Navigation dots border color
-
-dotNavigationFillColor?: string // Navigation dots active fill color
-
-images: string[] // Displayed images urls
-
-width: string // Carousel width
-
-height: string // Carousel height
-
-autoScrollInterval?: number // Time interval for auto-scro ll. Auto-scroll will be disabled if not specified
-
-autoScrollClickDelay?: number // Time delay for auto-scroll after user interacts with the carousel
-
-carouselStyle?: "flat" | "3d" // Carousel style
-```
+| Property  | Type | Description
+| ------------- | ------------- | ------------- |
+| ```arrows```  | ```boolean```  | Shows/hides navigation arrows |
+| ```dotsNavigation```  | ```boolean```  | Shows/hides navigation dots |
+| ```images```  | ```[string]```  | Array of displayed images urls |
+| ```width```  | ```string```  | CSS Property for carousel width |
+| ```height```  | ```string```  | CSS Property for carousel height |
+| ```carouselStyle?```  | ```"flat" \| "3d"```  | Carousel style |
+| ```dotsNavigationInside?```  | ```boolean```  | Places navigation dots inside of carousel (Defaults to false) |
+| ```dotNavigationOutlineColor?```  | ```string```  | Navigation dots border color |
+| ```dotNavigationFillColor?``` | ```number``` | Navigation dots active fill color |
+| ```autoScrollInterval?```  | ```number```  | Time interval for auto-scro ll. Auto-scroll will be disabled if not specified |
+| ```autoScrollClickDelay?```  | ```number```  | Time delay for auto-scroll after user interacts with the carousel |
