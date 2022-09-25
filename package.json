@@ -1,6 +1,6 @@
 {
   "name": "react-configurable-carousel",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple and responsive configurable 2D/3D carousel React component",
   "scripts": {
     "rollup": "rollup -c",
