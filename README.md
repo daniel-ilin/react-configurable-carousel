@@ -13,7 +13,7 @@ A simple and responsive configurable 2D/3D carousel React component for images
 ### Installation
 
 ```console
-npm install @daniel-ilin/react-configurable-carousel
+npm install react-configurable-carousel
 ```
 
 ### Example
