@@ -1,6 +1,6 @@
 {
-  "name": "@daniel-ilin/react-configurable-carousel",
-  "version": "0.1.2",
+  "name": "react-configurable-carousel",
+  "version": "0.1.3",
   "description": "A simple and responsive configurable 2D/3D carousel React component",
   "scripts": {
     "rollup": "rollup -c",
@@ -53,6 +53,6 @@
     "sass": "^1.55.0"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/daniel-ilin"
+    "registry": "https://registry.npmjs.org/"
   }
 }
