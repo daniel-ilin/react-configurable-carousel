@@ -3,8 +3,7 @@ import styles from "./CarouselItem.module.scss";
 
 type CarouselItemProps = {
   isShowing: boolean;
-  content: string;
-  height: string;
+  children?: React.ReactNode;
 };
 
 export const CarouselItem = (props: CarouselItemProps) => {
@@ -14,16 +13,9 @@ export const CarouselItem = (props: CarouselItemProps) => {
   return (
     <>
       <div className={styles.imageContainer}>
-        <img
-          className={styles.firstRowColumn}
-          src={props.content}
-          alt={"showcase project"}
-          style={{
-            height: props.height,
-            width: "100%",
-            objectFit: "cover",
-          }}
-        />
+        <div className={styles.firstRowColumn}>
+          {React.Children.only(props.children)}
+        </div>
         <div className={style} />
       </div>
     </>
