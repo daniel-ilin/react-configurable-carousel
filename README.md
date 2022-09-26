@@ -39,8 +39,7 @@ import { Carousel } from "react-configurable-carousel";
   <span style={{width: "100%", height: "100%"}}>
     <img src={imageSrc}/>
   </span>
-</Carousel>
-;
+</Carousel>;
 ```
 
 ### Options
