@@ -1,6 +1,6 @@
 # react-configurable-carousel
 
-A simple and responsive configurable 2D/3D carousel React component for images
+A simple and responsive configurable 2D/3D carousel React component for any React Component
 
 ## Examples
 
@@ -29,14 +29,22 @@ import { Carousel } from "react-configurable-carousel";
   arrows={true}
   dotsNavigation={true}
   dotsNavigationInside={true}
-  images={urls}
   width={"1200px"}
   height={"400px"}
   carouselStyle={"3d"}
-/>;
+>
+  <span>
+    <h2>Hello, world!</h2>
+  </span>
+  <span style={{width: "100%", height: "100%"}}>
+    <img src={imageSrc}/>
+  </span>
+</Carousel>
+;
 ```
 
 ### Options
+`<Carousel />` Component displays the Components passed in as children
 
 `<Carousel />` Takes the following props:
 
@@ -44,9 +52,9 @@ import { Carousel } from "react-configurable-carousel";
 | ---------------------------- | ---------------- | ----------------------------------------------------------------------------- |
 | `arrows`                     | `boolean`        | Shows/hides navigation arrows                                                 |
 | `dotsNavigation`             | `boolean`        | Shows/hides navigation dots                                                   |
-| `images`                     | `[string]`       | Array of displayed images urls                                                |
 | `width`                      | `string`         | CSS Property for carousel width                                               |
 | `height`                     | `string`         | CSS Property for carousel height                                              |
+| `children?`                  | `ReactNode`      | Components that will be displayed in the Carousel                             |
 | `carouselStyle?`             | `"flat" \| "3d"` | Carousel style                                                                |
 | `dotsNavigationInside?`      | `boolean`        | Places navigation dots inside of carousel (Defaults to false)                 |
 | `dotNavigationOutlineColor?` | `string`         | Navigation dots border color                                                  |
