@@ -1,6 +1,6 @@
 # react-configurable-carousel
 
-A simple and responsive configurable 2D/3D carousel React component for any React Component
+A simple and responsive configurable 2D/3D carousel React component to display anything you like
 
 ## Examples
 
