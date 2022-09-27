@@ -4,6 +4,7 @@ import styles from "./CarouselItem.module.scss";
 type CarouselItemProps = {
   isShowing: boolean;
   children?: React.ReactNode;
+  height: string;
 };
 
 export const CarouselItem = (props: CarouselItemProps) => {
@@ -13,7 +14,14 @@ export const CarouselItem = (props: CarouselItemProps) => {
   return (
     <>
       <div className={styles.imageContainer}>
-        <div className={styles.firstRowColumn}>
+        <div
+          className={styles.firstRowColumn}
+          style={{
+            height: props.height,
+            width: "100%",
+            objectFit: "cover",
+          }}
+        >
           {React.Children.only(props.children)}
         </div>
         <div className={style} />

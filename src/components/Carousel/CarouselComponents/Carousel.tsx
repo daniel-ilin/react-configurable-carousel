@@ -41,7 +41,10 @@ const Carousel = (props: CarouselProps) => {
       style += ` ${styles["prev"]}`;
       return (
         <span className={style} key={index} onClick={() => clickHandler("L")}>
-          <CarouselItem isShowing={showItems[index].isSelected}>
+          <CarouselItem
+            isShowing={showItems[index].isSelected}
+            height={props.height}
+          >
             {element}
           </CarouselItem>
         </span>
@@ -50,7 +53,10 @@ const Carousel = (props: CarouselProps) => {
       style += ` ${styles["next"]}`;
       return (
         <span className={style} key={index} onClick={() => clickHandler("R")}>
-          <CarouselItem isShowing={showItems[index].isSelected}>
+          <CarouselItem
+            isShowing={showItems[index].isSelected}
+            height={props.height}
+          >
             {element}
           </CarouselItem>
         </span>
@@ -58,7 +64,10 @@ const Carousel = (props: CarouselProps) => {
     }
     return (
       <span className={style} key={index}>
-        <CarouselItem isShowing={showItems[index].isSelected}>
+        <CarouselItem
+          isShowing={showItems[index].isSelected}
+          height={props.height}
+        >
           {element}
         </CarouselItem>
       </span>
