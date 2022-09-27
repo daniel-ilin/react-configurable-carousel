@@ -1,12 +1,17 @@
+:root {
+    --animation-time: 0.5s;
+    --z-index-animation-delay: 0.1s;
+}
+
 .verticalContainer {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;       
+    align-items: center;
     width: 100%;
     height: 100%;
     margin: 0;
-    overflow: hidden;    
+    overflow: hidden;
     z-index: 100;
 }
 
@@ -17,7 +22,7 @@
     width: 100%;
     height: 100%;
     justify-content: center;
-    align-items: center;        
+    align-items: center;
 
     button {
         z-index: 100;
@@ -85,7 +90,7 @@
     z-index: 0;
     background-color: white;
     display: flex;
-    align-items: center;    
+    align-items: center;
     justify-content: center;
 
     &.threed {
@@ -96,16 +101,20 @@
         width: 100%;
         transform: translateX(0%);
     }
+    transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
     height: 100%;
     opacity: 0;
-    transition: all 0.5s;
 
     &.showing {
         opacity: 1;
-        z-index: 2;
+        z-index: 3;
+        transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
+
         &.threed {
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);
             transform: scale(1);
+            transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time),
+                z-index var(--z-index-animation-delay) cubic-bezier(0, 1, 1, 0);
         }
         &.flat {
             animation: none;
@@ -113,30 +122,39 @@
     }
 
     &.prev {
+        z-index: 2;
+
+        &.leftClick {
+            z-index: 1;
+            opacity: 0.4;
+        }
+
         &.threed {
             opacity: 1;
-            z-index: 1;
             transform: translateX(-80%) scale(0.92);
             cursor: pointer;
         }
         &.flat {
             opacity: 1;
-            z-index: 1;
             transform: translateX(-100%);
             cursor: pointer;
         }
     }
 
     &.next {
+        z-index: 1;
+
+        &.leftClick {
+            z-index: 2;
+        }
+
         &.threed {
             opacity: 1;
-            z-index: 1;
             transform: translateX(80%) scale(0.92);
             cursor: pointer;
         }
         &.flat {
             opacity: 1;
-            z-index: 1;
             transform: translateX(100%);
             cursor: pointer;
         }
@@ -152,7 +170,7 @@
         opacity: 1;
     }
     25% {
-        opacity: 0.8;
+        opacity: 0.85;
     }
     100% {
         opacity: 1;

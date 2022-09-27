@@ -6,6 +6,8 @@ import { CarouselItem } from "./CarouselItem/CarouselItem";
 import { DotsNavigation } from "./DotsNavigation/DotsNavigation";
 import { useSwipeable } from "react-swipeable";
 
+const animationTime = 500; //ms
+
 function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
@@ -30,7 +32,9 @@ type CarouselProps = {
 
 const Carousel = (props: CarouselProps) => {
   const childrenNum = React.Children.count(props.children);
+  const is3D = props.carouselStyle === "3d";
 
+  // Render the carousel elements based on its setup
   const renderElement = (element: any, index: number) => {
     let style = `${styles["itemContainer"]}`;
     style += is3D ? ` ${styles["threed"]}` : ` ${styles["flat"]}`;
@@ -38,7 +42,7 @@ const Carousel = (props: CarouselProps) => {
     if (showItems[index].isSelected) {
       style += ` ${styles["showing"]}`;
     } else if (index === prevIndex) {
-      style += ` ${styles["prev"]}`;
+      style += prevItemStyle;
       return (
         <span className={style} key={index} onClick={() => clickHandler("L")}>
           <CarouselItem
@@ -50,7 +54,7 @@ const Carousel = (props: CarouselProps) => {
         </span>
       );
     } else if (index === nextIndex) {
-      style += ` ${styles["next"]}`;
+      style += nextItemStyle;
       return (
         <span className={style} key={index} onClick={() => clickHandler("R")}>
           <CarouselItem
@@ -74,10 +78,16 @@ const Carousel = (props: CarouselProps) => {
     );
   };
 
+  // State
+  let [prevItemStyle, setPrevItemStyle] = useState(` ${styles["prev"]}`);
+  let [nextItemStyle, setNextItemStyle] = useState(` ${styles["next"]}`);
   const [showingIndex, setShowingIndex] = useState(0);
   const [showItems, setShowItems] = useState<ListItem[]>();
   const [waiting, setWaiting] = useState(false);
   const [autoScrollClickDelay, setAutoScrollClickDelay] = useState(false);
+
+
+  // Swipeable handlers
   const handlers = useSwipeable({
     onSwipedRight: () => {
       clickHandler("L");
@@ -88,8 +98,8 @@ const Carousel = (props: CarouselProps) => {
     preventScrollOnSwipe: true,
   });
 
-  const is3D = props.carouselStyle === "3d";
 
+  // Shifts the carousel left
   const shiftLeft = useCallback(() => {
     setShowingIndex((prev) => {
       if (prev === 0) return childrenNum - 1;
@@ -97,24 +107,28 @@ const Carousel = (props: CarouselProps) => {
     });
   }, [childrenNum]);
 
+  // Shifts the carousel right
   const shiftRight = useCallback(() => {
-    console.log(`Shifting right!`);
     setShowingIndex((prev) => {
       if (prev === childrenNum - 1) return 0;
-      console.log("Adding + 1 to Showing");
       return prev + 1;
     });
   }, [childrenNum]);
 
+  // Checks if currently waiting, if not - adjust the CSS styles and call carousel shift 
   const rotateCarouselHandler = useCallback(
     (arg0: "L" | "R") => {
       if (waiting === false) {
         setWaiting(true);
         switch (arg0) {
           case "L":
+            setPrevItemStyle(` ${styles["prev"]} ${styles["leftClick"]}`);
+            setNextItemStyle(` ${styles["next"]} ${styles["leftClick"]}`);
             shiftLeft();
             break;
           case "R":
+            setPrevItemStyle(` ${styles["prev"]}`);
+            setNextItemStyle(` ${styles["next"]}`);
             shiftRight();
             break;
         }
@@ -123,6 +137,7 @@ const Carousel = (props: CarouselProps) => {
     [shiftLeft, shiftRight, waiting]
   );
 
+  // Adjusts showItems if props.children or currently showing item change
   useEffect(() => {
     let showItems = React.Children.map(props.children, (child, index) => {
       return { isSelected: index === showingIndex };
@@ -131,11 +146,12 @@ const Carousel = (props: CarouselProps) => {
     if (showItems) setShowItems(showItems);
   }, [props.children, showingIndex]);
 
+  // Configures auto-rotate interval
   useEffect(() => {
     if (
       autoScrollClickDelay === false &&
       props.autoScrollInterval &&
-      props.autoScrollInterval > 400
+      props.autoScrollInterval > animationTime
     ) {
       let interval = setInterval(() => {
         rotateCarouselHandler("R");
@@ -145,6 +161,7 @@ const Carousel = (props: CarouselProps) => {
     }
   }, [autoScrollClickDelay, props.autoScrollInterval, rotateCarouselHandler]);
 
+  // Configures auto-rotate delay after click
   useEffect(() => {
     const stopWaiting = async () => {
       if (props.autoScrollClickDelay !== undefined) {
@@ -157,9 +174,10 @@ const Carousel = (props: CarouselProps) => {
     if (autoScrollClickDelay === true) stopWaiting();
   }, [autoScrollClickDelay, props.autoScrollClickDelay]);
 
+  // Takes care of waiting for an action
   useEffect(() => {
     const stopWaiting = async () => {
-      await delay(400);
+      await delay(animationTime);
       setWaiting((prev) => {
         return false;
       });
@@ -170,14 +188,22 @@ const Carousel = (props: CarouselProps) => {
   let prevIndex = showingIndex === 0 ? childrenNum - 1 : showingIndex - 1;
   let nextIndex = showingIndex === childrenNum - 1 ? 0 : showingIndex + 1;
 
+  // Takes in the item index to jump to, calls rotateCarouselHandler
   const jumpToIndexHandler = (index: number) => {
     if (waiting === false) {
       setWaiting(true);
-      setShowingIndex(index);
+      if (index === prevIndex) {
+        rotateCarouselHandler("L");
+      } else if (index === nextIndex) {
+        rotateCarouselHandler("R");
+      } else {
+        setShowingIndex(index);
+      }
       setAutoScrollClickDelay(true);
     }
   };
 
+  // Arrow click handler
   const clickHandler = (dir: "L" | "R") => {
     rotateCarouselHandler(dir);
     setAutoScrollClickDelay(true);
