@@ -96,8 +96,6 @@ const Carousel = (props: CarouselProps) => {
   const is3D = props.carouselStyle === "3d";
 
   const shiftLeft = useCallback(() => {
-    setPrevItemStyle(` ${styles["prev"]} ${styles["leftClick"]}`);
-    setNextItemStyle(` ${styles["next"]} ${styles["leftClick"]}`);
     setShowingIndex((prev) => {
       if (prev === 0) return childrenNum - 1;
       return prev - 1;
@@ -105,8 +103,6 @@ const Carousel = (props: CarouselProps) => {
   }, [childrenNum]);
 
   const shiftRight = useCallback(() => {
-    setPrevItemStyle(` ${styles["prev"]}`);
-    setNextItemStyle(` ${styles["next"]}`);
     setShowingIndex((prev) => {
       if (prev === childrenNum - 1) return 0;
       return prev + 1;
@@ -119,9 +115,13 @@ const Carousel = (props: CarouselProps) => {
         setWaiting(true);
         switch (arg0) {
           case "L":
+            setPrevItemStyle(` ${styles["prev"]} ${styles["leftClick"]}`);
+            setNextItemStyle(` ${styles["next"]} ${styles["leftClick"]}`);
             shiftLeft();
             break;
           case "R":
+            setPrevItemStyle(` ${styles["prev"]}`);
+            setNextItemStyle(` ${styles["next"]}`);
             shiftRight();
             break;
         }
@@ -180,7 +180,13 @@ const Carousel = (props: CarouselProps) => {
   const jumpToIndexHandler = (index: number) => {
     if (waiting === false) {
       setWaiting(true);
-      setShowingIndex(index);
+      if (index === prevIndex) {
+        rotateCarouselHandler("L");
+      } else if (index === nextIndex) {
+        rotateCarouselHandler("R");
+      } else {
+        setShowingIndex(index);
+      }
       setAutoScrollClickDelay(true);
     }
   };

@@ -101,19 +101,20 @@
         width: 100%;
         transform: translateX(0%);
     }
+    transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
     height: 100%;
     opacity: 0;
-    transition: transform var(--animation-time), z-index var(--z-index-animation-delay) cubic-bezier(0, 1, 1, 0);
 
     &.showing {
         opacity: 1;
         z-index: 3;
-        transition: transform var(--animation-time), z-index var(--z-index-animation-delay) cubic-bezier(0, 1, 1, 0);
-        // animation: opacityAnimation 0.5s;
+        transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
 
         &.threed {
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);
             transform: scale(1);
+            transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time),
+                z-index var(--z-index-animation-delay) cubic-bezier(0, 1, 1, 0);
         }
         &.flat {
             animation: none;
