@@ -43,9 +43,9 @@ import { Carousel } from "react-configurable-carousel";
 ```
 
 ### Options
-`<Carousel />` Component displays the Components passed in as children
 
-`<Carousel />` Takes the following props:
+`<Carousel />` Component displays the Components passed in as children
+It takes the following props:
 
 | Property                     | Type             | Description                                                                   |
 | ---------------------------- | ---------------- | ----------------------------------------------------------------------------- |
