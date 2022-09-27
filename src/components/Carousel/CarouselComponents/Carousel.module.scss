@@ -1,12 +1,16 @@
+:root {
+    --animation-time: 0.5s;
+}
+
 .verticalContainer {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;       
+    align-items: center;
     width: 100%;
     height: 100%;
     margin: 0;
-    overflow: hidden;    
+    overflow: hidden;
     z-index: 100;
 }
 
@@ -17,7 +21,7 @@
     width: 100%;
     height: 100%;
     justify-content: center;
-    align-items: center;        
+    align-items: center;
 
     button {
         z-index: 100;
@@ -85,7 +89,7 @@
     z-index: 0;
     background-color: white;
     display: flex;
-    align-items: center;    
+    align-items: center;
     justify-content: center;
 
     &.threed {
@@ -98,7 +102,7 @@
     }
     height: 100%;
     opacity: 0;
-    transition: all 0.5s;
+    transition: all var(--animation-time);
 
     &.showing {
         opacity: 1;

@@ -6,6 +6,8 @@ import { CarouselItem } from "./CarouselItem/CarouselItem";
 import { DotsNavigation } from "./DotsNavigation/DotsNavigation";
 import { useSwipeable } from "react-swipeable";
 
+const animationTime = 500; //ms
+
 function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
@@ -135,7 +137,7 @@ const Carousel = (props: CarouselProps) => {
     if (
       autoScrollClickDelay === false &&
       props.autoScrollInterval &&
-      props.autoScrollInterval > 400
+      props.autoScrollInterval > animationTime
     ) {
       let interval = setInterval(() => {
         rotateCarouselHandler("R");
@@ -159,7 +161,7 @@ const Carousel = (props: CarouselProps) => {
 
   useEffect(() => {
     const stopWaiting = async () => {
-      await delay(400);
+      await delay(animationTime);
       setWaiting((prev) => {
         return false;
       });
