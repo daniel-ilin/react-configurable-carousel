@@ -33,6 +33,9 @@ type CarouselProps = {
 const Carousel = (props: CarouselProps) => {
   const childrenNum = React.Children.count(props.children);
 
+  let [prevItemStyle, setPrevItemStyle] = useState(` ${styles["prev"]}`);
+  let [nextItemStyle, setNextItemStyle] = useState(` ${styles["next"]}`);
+
   const renderElement = (element: any, index: number) => {
     let style = `${styles["itemContainer"]}`;
     style += is3D ? ` ${styles["threed"]}` : ` ${styles["flat"]}`;
@@ -40,7 +43,7 @@ const Carousel = (props: CarouselProps) => {
     if (showItems[index].isSelected) {
       style += ` ${styles["showing"]}`;
     } else if (index === prevIndex) {
-      style += ` ${styles["prev"]}`;
+      style += prevItemStyle;
       return (
         <span className={style} key={index} onClick={() => clickHandler("L")}>
           <CarouselItem
@@ -52,7 +55,7 @@ const Carousel = (props: CarouselProps) => {
         </span>
       );
     } else if (index === nextIndex) {
-      style += ` ${styles["next"]}`;
+      style += nextItemStyle;
       return (
         <span className={style} key={index} onClick={() => clickHandler("R")}>
           <CarouselItem
@@ -93,6 +96,8 @@ const Carousel = (props: CarouselProps) => {
   const is3D = props.carouselStyle === "3d";
 
   const shiftLeft = useCallback(() => {
+    setPrevItemStyle(` ${styles["prev"]} ${styles["leftClick"]}`);
+    setNextItemStyle(` ${styles["next"]} ${styles["leftClick"]}`);
     setShowingIndex((prev) => {
       if (prev === 0) return childrenNum - 1;
       return prev - 1;
@@ -100,10 +105,10 @@ const Carousel = (props: CarouselProps) => {
   }, [childrenNum]);
 
   const shiftRight = useCallback(() => {
-    console.log(`Shifting right!`);
+    setPrevItemStyle(` ${styles["prev"]}`);
+    setNextItemStyle(` ${styles["next"]}`);
     setShowingIndex((prev) => {
       if (prev === childrenNum - 1) return 0;
-      console.log("Adding + 1 to Showing");
       return prev + 1;
     });
   }, [childrenNum]);

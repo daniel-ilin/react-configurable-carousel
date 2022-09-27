@@ -1,5 +1,6 @@
 :root {
     --animation-time: 0.5s;
+    --z-index-animation-delay: 0.1s;
 }
 
 .verticalContainer {
@@ -102,11 +103,14 @@
     }
     height: 100%;
     opacity: 0;
-    transition: all var(--animation-time);
+    transition: transform var(--animation-time), z-index var(--z-index-animation-delay) cubic-bezier(0, 1, 1, 0);
 
     &.showing {
         opacity: 1;
-        z-index: 2;
+        z-index: 3;
+        transition: transform var(--animation-time), z-index var(--z-index-animation-delay) cubic-bezier(0, 1, 1, 0);
+        // animation: opacityAnimation 0.5s;
+
         &.threed {
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);
             transform: scale(1);
@@ -117,30 +121,39 @@
     }
 
     &.prev {
+        z-index: 2;
+
+        &.leftClick {
+            z-index: 1;
+            opacity: 0.4;
+        }
+
         &.threed {
             opacity: 1;
-            z-index: 1;
             transform: translateX(-80%) scale(0.92);
             cursor: pointer;
         }
         &.flat {
             opacity: 1;
-            z-index: 1;
             transform: translateX(-100%);
             cursor: pointer;
         }
     }
 
     &.next {
+        z-index: 1;
+
+        &.leftClick {
+            z-index: 2;
+        }
+
         &.threed {
             opacity: 1;
-            z-index: 1;
             transform: translateX(80%) scale(0.92);
             cursor: pointer;
         }
         &.flat {
             opacity: 1;
-            z-index: 1;
             transform: translateX(100%);
             cursor: pointer;
         }
@@ -156,7 +169,7 @@
         opacity: 1;
     }
     25% {
-        opacity: 0.8;
+        opacity: 0.85;
     }
     100% {
         opacity: 1;
