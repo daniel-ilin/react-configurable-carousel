@@ -1,8 +1,23 @@
 {
   "name": "react-configurable-carousel",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple and responsive configurable 2D/3D carousel React component",
   "homepage": "https://daniel-ilin.github.io/react-configurable-carousel/?path=/story/carousel--first-story",
+  "keywords": [
+    "react",
+    "carousel",
+    "react-carousel",
+    "react-component",
+    "3d",
+    "3d-carousel",
+    "responsive",    
+    "gallery",
+    "slideshow",
+    "slider",
+    "image gallery",
+    "image slideshow",
+    "image slider"
+  ],
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook -p 6006",
