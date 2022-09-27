@@ -1,11 +1,11 @@
 {
   "name": "react-configurable-carousel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple and responsive configurable 2D/3D carousel React component",
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs-build"
   },
   "author": "Daniel Ilin",
   "license": "MIT",
