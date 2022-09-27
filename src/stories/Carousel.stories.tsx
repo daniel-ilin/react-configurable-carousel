@@ -1,5 +1,7 @@
-import React from "react";
+// Showcase images taken from Unsplash - https://unsplash.com/
+// Showcase video taken from Pixabay - https://pixabay.com
 
+import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Carousel from "../components/Carousel";
 
@@ -9,38 +11,22 @@ export default {
 } as ComponentMeta<typeof Carousel>;
 
 let imageUrls = [
-  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-  "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80",
-  "https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300",
+  "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+  "https://images.unsplash.com/photo-1542361345-89e58247f2d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+  "https://images.unsplash.com/photo-1499244571948-7ccddb3583f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
 ];
+
+let videoUrl =
+  "https://player.vimeo.com/video/577442929?title=0&portrait=0&byline=0&autoplay=1&loop=1&transparent=1";
 
 const Template: ComponentStory<typeof Carousel> = (args) => (
   <Carousel {...args}>
-    <div
-      style={{
-        backgroundColor: "pink",
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "30px",
-      }}
-    >
-      <span>Hello!</span>
-    </div>
-    <div
-      style={{
-        backgroundColor: "brown",
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <img src={imageUrls[0]} width="50%"></img>
-    </div>
+    <img
+      src={imageUrls[0]}
+      width="100%"
+      height="100%"
+      style={{ objectFit: "cover" }}
+    ></img>
     <div
       style={{
         backgroundColor: "black",
@@ -51,21 +37,35 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
         justifyContent: "center",
       }}
     >
-      <video width="320" height="240" controls>
-        <source
-          type="video/ogg"
-          src="http://techslides.com/demos/sample-videos/small.ogv"
-        ></source>
-      </video>
+      <iframe
+        src={videoUrl}
+        style={{
+          border: "none",
+          objectFit: "fill",
+        }}
+        width="100%"
+        height="100%"
+      ></iframe>
     </div>
     <div
       style={{
-        backgroundColor: "yellow",
+        backgroundColor: "#F9F6EE",
         height: "100%",
         width: "100%",
-        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "30px",
       }}
-    ></div>
+    >
+      <span>Hello!</span>
+    </div>
+    <img
+      src={imageUrls[1]}
+      width="100%"
+      height="100%"
+      style={{ objectFit: "cover" }}
+    ></img>
   </Carousel>
 );
 
@@ -74,6 +74,7 @@ export const FirstStory = Template.bind({});
 FirstStory.args = {
   arrows: true,
   dotsNavigation: true,
-  width: "800px",
-  height: "500px",
+  width: "600px",
+  height: "400px",
+  carouselStyle: "3d",
 };
