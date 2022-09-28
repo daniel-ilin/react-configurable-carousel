@@ -13,6 +13,7 @@ function delay(time: number) {
 }
 
 export interface ListItem {
+  element: React.ReactNode;
   isSelected: boolean;
 }
 
@@ -31,14 +32,11 @@ type CarouselProps = {
 };
 
 const Carousel = (props: CarouselProps) => {
-  const childrenNum = React.Children.count(props.children);
-  const is3D = props.carouselStyle === "3d";
-
   // Render the carousel elements based on its setup
-  const renderElement = (element: any, index: number) => {
+  const renderElement = (element: React.ReactNode, index: number) => {
     let style = `${styles["itemContainer"]}`;
     style += is3D ? ` ${styles["threed"]}` : ` ${styles["flat"]}`;
-    if (!showItems) return;
+    if (!showItems || !showItems[index]) return;
     if (showItems[index].isSelected) {
       style += ` ${styles["showing"]}`;
     } else if (index === prevIndex) {
@@ -86,6 +84,8 @@ const Carousel = (props: CarouselProps) => {
   const [waiting, setWaiting] = useState(false);
   const [autoScrollClickDelay, setAutoScrollClickDelay] = useState(false);
 
+  const childrenNum = showItems?.length ?? 0;
+  const is3D = props.carouselStyle === "3d";
 
   // Swipeable handlers
   const handlers = useSwipeable({
@@ -98,7 +98,6 @@ const Carousel = (props: CarouselProps) => {
     preventScrollOnSwipe: true,
   });
 
-
   // Shifts the carousel left
   const shiftLeft = useCallback(() => {
     setShowingIndex((prev) => {
@@ -110,12 +109,15 @@ const Carousel = (props: CarouselProps) => {
   // Shifts the carousel right
   const shiftRight = useCallback(() => {
     setShowingIndex((prev) => {
-      if (prev === childrenNum - 1) return 0;
+      if (prev === childrenNum - 1) {
+        return 0;
+      }
+
       return prev + 1;
     });
   }, [childrenNum]);
 
-  // Checks if currently waiting, if not - adjust the CSS styles and call carousel shift 
+  // Checks if currently waiting, if not - adjust the CSS styles and call carousel shift
   const rotateCarouselHandler = useCallback(
     (arg0: "L" | "R") => {
       if (waiting === false) {
@@ -140,10 +142,17 @@ const Carousel = (props: CarouselProps) => {
   // Adjusts showItems if props.children or currently showing item change
   useEffect(() => {
     let showItems = React.Children.map(props.children, (child, index) => {
-      return { isSelected: index === showingIndex };
+      if (child) return { element: child, isSelected: index === showingIndex };
     });
-
-    if (showItems) setShowItems(showItems);
+    if (showItems) {
+      setShowItems(showItems);
+      console.log("No showitems, setting index to 0");
+      if (showingIndex > showItems?.length - 1 || showingIndex < 0)
+        setShowingIndex(0);
+    } else {
+      setShowItems(undefined);
+      if (showingIndex !== 0) setShowingIndex(0);
+    }
   }, [props.children, showingIndex]);
 
   // Configures auto-rotate interval
@@ -235,9 +244,10 @@ const Carousel = (props: CarouselProps) => {
               </button>
             )}
             <div className={styles.swipeContainer} {...handlers}>
-              {React.Children.map(props.children, (child, index) => {
-                return renderElement(child, index);
-              })}
+              {showItems &&
+                showItems.map((listItem, index) => {
+                  return renderElement(listItem.element, index);
+                })}
             </div>
             {props.arrows && (
               <button
