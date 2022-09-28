@@ -1,6 +1,8 @@
 # react-configurable-carousel
 
-A simple and responsive configurable 2D/3D carousel React component to display anything you like
+A simple and responsive configurable 2D/3D carousel React component to display anything you like!
+
+### [Online Storybook Demo](https://daniel-ilin.github.io/react-configurable-carousel/?path=/story/carousel--first-story)
 
 ## Examples
 
@@ -32,12 +34,11 @@ import { Carousel } from "react-configurable-carousel";
   width={"1200px"}
   height={"400px"}
   carouselStyle={"3d"}
->
+>  
+  <img src={imageSrc}/>  
+  <MyComponent/>
   <span>
     <h2>Hello, world!</h2>
-  </span>
-  <span style={{width: "100%", height: "100%"}}>
-    <img src={imageSrc}/>
   </span>
 </Carousel>;
 ```
