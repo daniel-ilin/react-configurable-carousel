@@ -12,11 +12,6 @@ function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-export interface ListItem {
-  element: React.ReactNode;
-  isSelected: boolean;
-}
-
 type CarouselProps = {
   arrows: boolean;
   dotsNavigation: boolean;
@@ -32,22 +27,48 @@ type CarouselProps = {
 };
 
 const Carousel = (props: CarouselProps) => {
+  // State
+  let [prevItemStyle, setPrevItemStyle] = useState(` ${styles["prev"]}`);
+  let [nextItemStyle, setNextItemStyle] = useState(` ${styles["next"]}`);
+  let [showItems, setShowItems] = useState<React.ReactNode>();
+  const [showingIndex, setShowingIndex] = useState(0);
+
+  const [waiting, setWaiting] = useState(false);
+  const [autoScrollClickDelay, setAutoScrollClickDelay] = useState(false);
+
+  const showItemsNum = React.Children.count(showItems) ?? 0;
+  const is3D = props.carouselStyle === "3d";
+
+  let prevIndex = showingIndex === 0 ? showItemsNum - 1 : showingIndex - 1;
+  let nextIndex = showingIndex === showItemsNum - 1 ? 0 : showingIndex + 1;
+
+  useEffect(() => {
+    let items = React.Children.map(props.children, (child, index) => {
+      if (child) return child;
+    });
+    setShowItems(items);
+    setShowingIndex((prev) => {
+      if (prev > showItemsNum) return showItemsNum - 1;
+      else if (prev < 0) return 0;
+      else return prev;
+    });
+  }, [props.children, showItemsNum]);
+
   // Render the carousel elements based on its setup
-  const renderElement = (element: React.ReactNode, index: number) => {
+  const renderElement = (listItem: React.ReactNode, index: number) => {
     let style = `${styles["itemContainer"]}`;
     style += is3D ? ` ${styles["threed"]}` : ` ${styles["flat"]}`;
-    if (!showItems || !showItems[index]) return;
-    if (showItems[index].isSelected) {
+
+    let isSelected = index === showingIndex;
+
+    if (isSelected) {
       style += ` ${styles["showing"]}`;
     } else if (index === prevIndex) {
       style += prevItemStyle;
       return (
         <span className={style} key={index} onClick={() => clickHandler("L")}>
-          <CarouselItem
-            isShowing={showItems[index].isSelected}
-            height={props.height}
-          >
-            {element}
+          <CarouselItem isShowing={isSelected} height={props.height}>
+            {listItem}
           </CarouselItem>
         </span>
       );
@@ -55,37 +76,20 @@ const Carousel = (props: CarouselProps) => {
       style += nextItemStyle;
       return (
         <span className={style} key={index} onClick={() => clickHandler("R")}>
-          <CarouselItem
-            isShowing={showItems[index].isSelected}
-            height={props.height}
-          >
-            {element}
+          <CarouselItem isShowing={isSelected} height={props.height}>
+            {listItem}
           </CarouselItem>
         </span>
       );
     }
     return (
       <span className={style} key={index}>
-        <CarouselItem
-          isShowing={showItems[index].isSelected}
-          height={props.height}
-        >
-          {element}
+        <CarouselItem isShowing={isSelected} height={props.height}>
+          {listItem}
         </CarouselItem>
       </span>
     );
   };
-
-  // State
-  let [prevItemStyle, setPrevItemStyle] = useState(` ${styles["prev"]}`);
-  let [nextItemStyle, setNextItemStyle] = useState(` ${styles["next"]}`);
-  const [showingIndex, setShowingIndex] = useState(0);
-  const [showItems, setShowItems] = useState<ListItem[]>();
-  const [waiting, setWaiting] = useState(false);
-  const [autoScrollClickDelay, setAutoScrollClickDelay] = useState(false);
-
-  const childrenNum = showItems?.length ?? 0;
-  const is3D = props.carouselStyle === "3d";
 
   // Swipeable handlers
   const handlers = useSwipeable({
@@ -101,21 +105,26 @@ const Carousel = (props: CarouselProps) => {
   // Shifts the carousel left
   const shiftLeft = useCallback(() => {
     setShowingIndex((prev) => {
-      if (prev === 0) return childrenNum - 1;
+      if (prev === 0 || prev - 1 > showItemsNum - 1 || prev - 1 < 0) {
+        return showItemsNum - 1;
+      }
       return prev - 1;
     });
-  }, [childrenNum]);
+  }, [showItemsNum]);
 
   // Shifts the carousel right
   const shiftRight = useCallback(() => {
     setShowingIndex((prev) => {
-      if (prev === childrenNum - 1) {
+      if (
+        prev === showItemsNum - 1 ||
+        prev + 1 > showItemsNum - 1 ||
+        prev + 1 < 0
+      ) {
         return 0;
       }
-
       return prev + 1;
     });
-  }, [childrenNum]);
+  }, [showItemsNum]);
 
   // Checks if currently waiting, if not - adjust the CSS styles and call carousel shift
   const rotateCarouselHandler = useCallback(
@@ -138,22 +147,6 @@ const Carousel = (props: CarouselProps) => {
     },
     [shiftLeft, shiftRight, waiting]
   );
-
-  // Adjusts showItems if props.children or currently showing item change
-  useEffect(() => {
-    let showItems = React.Children.map(props.children, (child, index) => {
-      if (child) return { element: child, isSelected: index === showingIndex };
-    });
-    if (showItems) {
-      setShowItems(showItems);
-      console.log("No showitems, setting index to 0");
-      if (showingIndex > showItems?.length - 1 || showingIndex < 0)
-        setShowingIndex(0);
-    } else {
-      setShowItems(undefined);
-      if (showingIndex !== 0) setShowingIndex(0);
-    }
-  }, [props.children, showingIndex]);
 
   // Configures auto-rotate interval
   useEffect(() => {
@@ -193,9 +186,6 @@ const Carousel = (props: CarouselProps) => {
     };
     if (waiting === true) stopWaiting();
   }, [waiting]);
-
-  let prevIndex = showingIndex === 0 ? childrenNum - 1 : showingIndex - 1;
-  let nextIndex = showingIndex === childrenNum - 1 ? 0 : showingIndex + 1;
 
   // Takes in the item index to jump to, calls rotateCarouselHandler
   const jumpToIndexHandler = (index: number) => {
@@ -245,8 +235,8 @@ const Carousel = (props: CarouselProps) => {
             )}
             <div className={styles.swipeContainer} {...handlers}>
               {showItems &&
-                showItems.map((listItem, index) => {
-                  return renderElement(listItem.element, index);
+                React.Children.map(showItems, (listItem, index) => {
+                  return renderElement(listItem, index);
                 })}
             </div>
             {props.arrows && (
@@ -272,7 +262,7 @@ const Carousel = (props: CarouselProps) => {
             }
           >
             <DotsNavigation
-              items={showItems}
+              items={showItems ?? []}
               selectedIndex={showingIndex}
               jumpToIndex={jumpToIndexHandler}
               dotNavigationOutlineColor={

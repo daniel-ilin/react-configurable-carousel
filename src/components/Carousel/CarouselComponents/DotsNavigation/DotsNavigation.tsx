@@ -1,9 +1,8 @@
-import { ListItem } from "../Carousel";
 import styles from "./DotsNavigation.module.scss";
 import * as React from "react";
 
 type DotsNavigationProps = {
-  items: ListItem[] | undefined;
+  items: React.ReactNode;
   selectedIndex: number;
   jumpToIndex: (index: number) => void;
   dotNavigationOutlineColor?: string;
@@ -15,7 +14,7 @@ export const DotsNavigation = (props: DotsNavigationProps) => {
     <>
       <div className={styles.dotsContainer}>
         {props.items &&
-          props.items.map((item, index) => {
+          React.Children.map(props.items, (item, index) => {
             let fillColor = props.dotNavigationFillColor
               ? `${props.dotNavigationFillColor}`
               : `gray`;
@@ -24,7 +23,7 @@ export const DotsNavigation = (props: DotsNavigationProps) => {
               ? `${props.dotNavigationOutlineColor}`
               : `gray`;
 
-            let style = !item.isSelected
+            let style = !(index === props.selectedIndex)
               ? { border: `1px solid ${outlineColor}` }
               : {
                   border: `1px solid ${outlineColor}`,
