@@ -92,16 +92,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
 
     &.threed {
         width: 53%;
         transform: scale(0.4);
+        transition: all 0.5s;
     }
     &.flat {
         width: 100%;
         transform: translateX(0%);
     }
-    transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
     height: 100%;
     opacity: 0;
 
