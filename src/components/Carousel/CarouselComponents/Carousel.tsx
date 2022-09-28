@@ -38,7 +38,7 @@ const Carousel = (props: CarouselProps) => {
   const renderElement = (element: any, index: number) => {
     let style = `${styles["itemContainer"]}`;
     style += is3D ? ` ${styles["threed"]}` : ` ${styles["flat"]}`;
-    if (!showItems) return;
+    if (!showItems || !showItems[index]) return;
     if (showItems[index].isSelected) {
       style += ` ${styles["showing"]}`;
     } else if (index === prevIndex) {
@@ -86,7 +86,6 @@ const Carousel = (props: CarouselProps) => {
   const [waiting, setWaiting] = useState(false);
   const [autoScrollClickDelay, setAutoScrollClickDelay] = useState(false);
 
-
   // Swipeable handlers
   const handlers = useSwipeable({
     onSwipedRight: () => {
@@ -97,7 +96,6 @@ const Carousel = (props: CarouselProps) => {
     },
     preventScrollOnSwipe: true,
   });
-
 
   // Shifts the carousel left
   const shiftLeft = useCallback(() => {
@@ -115,7 +113,7 @@ const Carousel = (props: CarouselProps) => {
     });
   }, [childrenNum]);
 
-  // Checks if currently waiting, if not - adjust the CSS styles and call carousel shift 
+  // Checks if currently waiting, if not - adjust the CSS styles and call carousel shift
   const rotateCarouselHandler = useCallback(
     (arg0: "L" | "R") => {
       if (waiting === false) {

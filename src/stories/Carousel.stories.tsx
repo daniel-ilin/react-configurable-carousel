@@ -77,4 +77,5 @@ FirstStory.args = {
   width: "600px",
   height: "400px",
   carouselStyle: "3d",
+  children: null,
 };
