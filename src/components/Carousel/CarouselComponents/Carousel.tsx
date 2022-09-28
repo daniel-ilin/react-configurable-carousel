@@ -48,7 +48,7 @@ const Carousel = (props: CarouselProps) => {
     });
     setShowItems(items);
     setShowingIndex((prev) => {
-      if (prev > showItemsNum) return showItemsNum - 1;
+      if (prev >= showItemsNum) return showItemsNum - 1;
       else if (prev < 0) return 0;
       else return prev;
     });
