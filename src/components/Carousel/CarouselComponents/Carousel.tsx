@@ -146,11 +146,12 @@ const Carousel = (props: CarouselProps) => {
     });
     if (showItems) {
       setShowItems(showItems);
+      console.log("No showitems, setting index to 0");
       if (showingIndex > showItems?.length - 1 || showingIndex < 0)
         setShowingIndex(0);
     } else {
       setShowItems(undefined);
-      setShowingIndex(0);
+      if (showingIndex !== 0) setShowingIndex(0);
     }
   }, [props.children, showingIndex]);
 
