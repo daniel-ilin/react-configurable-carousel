@@ -1,7 +1,5 @@
-:root {
-    --animation-time: 0.5s;
-    --z-index-animation-delay: 0.1s;
-}
+$animation-time: 0.5s;
+$z-index-animation-delay: 0.1s;
 
 .verticalContainer {
     position: relative;
@@ -92,7 +90,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
+    transition: transform $animation-time, width $animation-time, height $animation-time;
 
     &.threed {
         width: 53%;
@@ -109,13 +107,13 @@
     &.showing {
         opacity: 1;
         z-index: 3;
-        transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time);
+        transition: transform $animation-time, width $animation-time, height $animation-time;
 
         &.threed {
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);
             transform: scale(1);
-            transition: transform var(--animation-time), width var(--animation-time), height var(--animation-time),
-                z-index var(--z-index-animation-delay) cubic-bezier(0, 1, 1, 0);
+            transition: transform $animation-time, width $animation-time, height $animation-time,
+                z-index $z-index-animation-delay cubic-bezier(0, 1, 1, 0);
         }
         &.flat {
             animation: none;
