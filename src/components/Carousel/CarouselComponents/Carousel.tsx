@@ -58,32 +58,18 @@ const Carousel = (props: CarouselProps) => {
   const renderElement = (listItem: React.ReactNode, index: number) => {
     let style = `${styles["itemContainer"]}`;
     style += is3D ? ` ${styles["threed"]}` : ` ${styles["flat"]}`;
-
     let isSelected = index === showingIndex;
-
-    if (isSelected) {
-      style += ` ${styles["showing"]}`;
-    } else if (index === prevIndex) {
+    let onClickHandler;
+    if (isSelected) style += ` ${styles["showing"]}`;
+    else if (index === prevIndex) {
       style += prevItemStyle;
-      return (
-        <span className={style} key={index} onClick={() => clickHandler("L")}>
-          <CarouselItem isShowing={isSelected} height={props.height}>
-            {listItem}
-          </CarouselItem>
-        </span>
-      );
+      onClickHandler = () => clickHandler("L");
     } else if (index === nextIndex) {
       style += nextItemStyle;
-      return (
-        <span className={style} key={index} onClick={() => clickHandler("R")}>
-          <CarouselItem isShowing={isSelected} height={props.height}>
-            {listItem}
-          </CarouselItem>
-        </span>
-      );
+      onClickHandler = () => clickHandler("R");
     }
     return (
-      <span className={style} key={index}>
+      <span className={style} key={index} onClick={onClickHandler}>
         <CarouselItem isShowing={isSelected} height={props.height}>
           {listItem}
         </CarouselItem>
