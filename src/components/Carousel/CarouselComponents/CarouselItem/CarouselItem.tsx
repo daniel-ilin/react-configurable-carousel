@@ -5,12 +5,17 @@ type CarouselItemProps = {
   isShowing: boolean;
   children?: React.ReactNode;
   height: string;
+  outOfFocusDarken: boolean;
 };
 
 export const CarouselItem = (props: CarouselItemProps) => {
-  const style = props.isShowing
+  let style = props.isShowing
     ? `${styles["overlay"]}`
     : `${styles["overlay"]} ${styles["outOfFocus"]}`;
+
+  style +=
+    props.outOfFocusDarken && !props.isShowing && ` ${styles["darkened"]}`;
+
   return (
     <>
       <div className={styles.imageContainer}>

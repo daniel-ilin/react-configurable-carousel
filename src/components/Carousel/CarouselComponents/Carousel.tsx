@@ -24,6 +24,7 @@ type CarouselProps = {
   autoScrollInterval?: number;
   autoScrollClickDelay?: number;
   carouselStyle?: "flat" | "3d";
+  outOfFocusDarken?: boolean;
 };
 
 const Carousel = (props: CarouselProps) => {
@@ -70,7 +71,11 @@ const Carousel = (props: CarouselProps) => {
     }
     return (
       <span className={style} key={index} onClick={onClickHandler}>
-        <CarouselItem isShowing={isSelected} height={props.height}>
+        <CarouselItem
+          isShowing={isSelected}
+          height={props.height}
+          outOfFocusDarken={props.outOfFocusDarken ?? true}
+        >
           {listItem}
         </CarouselItem>
       </span>
