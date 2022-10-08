@@ -12,7 +12,7 @@ export default {
 
 let imageUrls = [
   "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://i.postimg.cc/5NX6xL69/equalsplitnative-content.png",
+  "https://images.unsplash.com/photo-1542361345-89e58247f2d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
   "https://images.unsplash.com/photo-1499244571948-7ccddb3583f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80",
 ];
 
@@ -64,7 +64,7 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
       src={imageUrls[1]}
       width="100%"
       height="100%"
-      style={{ objectFit: "contain" }}
+      style={{ objectFit: "cover" }}
     ></img>
   </Carousel>
 );
@@ -74,7 +74,7 @@ export const FirstStory = Template.bind({});
 FirstStory.args = {
   arrows: true,
   dotsNavigation: true,
-  width: "100%",
+  width: "600px",
   height: "400px",
   carouselStyle: "3d",
   children: null,
