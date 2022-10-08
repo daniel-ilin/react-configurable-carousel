@@ -86,7 +86,7 @@ $z-index-animation-delay: 0.1s;
     grid-row: 1;
     width: 0;
     z-index: 0;
-    background-color: white;
+    // background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,7 +110,7 @@ $z-index-animation-delay: 0.1s;
         transition: transform $animation-time, width $animation-time, height $animation-time;
 
         &.threed {
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);
+            // box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.32);
             transform: scale(1);
             transition: transform $animation-time, width $animation-time, height $animation-time,
                 z-index $z-index-animation-delay cubic-bezier(0, 1, 1, 0);
@@ -134,9 +134,11 @@ $z-index-animation-delay: 0.1s;
             cursor: pointer;
         }
         &.flat {
-            opacity: 1;
+            opacity: 0;
             transform: translateX(-100%);
             cursor: pointer;
+            transition: transform $animation-time, width $animation-time, height $animation-time,
+                opacity $animation-time;
         }
     }
 
@@ -153,9 +155,11 @@ $z-index-animation-delay: 0.1s;
             cursor: pointer;
         }
         &.flat {
-            opacity: 1;
+            opacity: 0;
             transform: translateX(100%);
             cursor: pointer;
+            transition: transform $animation-time, width $animation-time, height $animation-time,
+                opacity $animation-time;
         }
     }
 }
