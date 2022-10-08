@@ -9,12 +9,12 @@ type CarouselItemProps = {
 };
 
 export const CarouselItem = (props: CarouselItemProps) => {
-  let style = props.isShowing
-    ? `${styles["overlay"]}`
-    : `${styles["overlay"]} ${styles["outOfFocus"]}`;
-
-  style +=
-    props.outOfFocusDarken && !props.isShowing && ` ${styles["darkened"]}`;
+  const getStyle = (isShowing: boolean, isDarken: boolean): string => {
+    let style = `${styles["overlay"]}`;
+    if (!isShowing) style += ` ${styles["outOfFocus"]}`;
+    if (!isShowing && isDarken) style += ` ${styles["darkened"]}`;
+    return style;
+  };
 
   return (
     <>
@@ -29,7 +29,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
         >
           {React.Children.only(props.children)}
         </div>
-        <div className={style} />
+        <div className={getStyle(props.isShowing, props.outOfFocusDarken)} />
       </div>
     </>
   );
