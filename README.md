@@ -62,3 +62,4 @@ It takes the following props:
 | `dotNavigationFillColor?`    | `number`         | Navigation dots active fill color                                             |
 | `autoScrollInterval?`        | `number`         | Time interval for auto-scro ll. Auto-scroll will be disabled if not specified |
 | `autoScrollClickDelay?`      | `number`         | Time delay for auto-scroll after user interacts with the carousel             |
+| `outOfFocusDarken?`      | `boolean`         | Whether the elements that are not currently selected will be darkened (Defaults to false)             |
