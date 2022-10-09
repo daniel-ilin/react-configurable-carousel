@@ -65,9 +65,9 @@ $z-index-animation-delay: 0.1s;
 
     &.inside {
         position: relative;
-        bottom: 72px;
+        bottom: 64px;
         padding: 4px;
-        mix-blend-mode: color-dodge;
+        // mix-blend-mode: difference;        
         border-radius: 8px;
     }
 }

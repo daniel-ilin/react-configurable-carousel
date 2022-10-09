@@ -34,6 +34,8 @@ const Carousel = (props: CarouselProps) => {
   let [showItems, setShowItems] = useState<React.ReactNode>();
   const [showingIndex, setShowingIndex] = useState(0);
 
+  const childrenCount = React.Children.count(props.children);
+
   const [waiting, setWaiting] = useState(false);
   const [autoScrollClickDelay, setAutoScrollClickDelay] = useState(false);
 
@@ -47,6 +49,8 @@ const Carousel = (props: CarouselProps) => {
     let items = React.Children.map(props.children, (child, index) => {
       if (child) return child;
     });
+
+    if (childrenCount === 2) items = items?.concat(items);
     setShowItems(items);
     setShowingIndex((prev) => {
       if (prev >= showItemsNum) return showItemsNum - 1;
@@ -70,7 +74,7 @@ const Carousel = (props: CarouselProps) => {
       onClickHandler = () => clickHandler("R");
     }
     return (
-      <span className={style} key={index} onClick={onClickHandler}>
+      <div className={style} key={index} onClick={onClickHandler}>
         <CarouselItem
           isShowing={isSelected}
           height={props.height}
@@ -78,7 +82,7 @@ const Carousel = (props: CarouselProps) => {
         >
           {listItem}
         </CarouselItem>
-      </span>
+      </div>
     );
   };
 
@@ -253,8 +257,14 @@ const Carousel = (props: CarouselProps) => {
             }
           >
             <DotsNavigation
-              items={showItems ?? []}
-              selectedIndex={showingIndex}
+              items={
+                childrenCount === 2
+                  ? React.Children.map(showItems, (el, index) => {
+                      if (index < 2) return el;
+                    }) ?? []
+                  : showItems ?? []
+              }
+              selectedIndex={showingIndex % childrenCount}
               jumpToIndex={jumpToIndexHandler}
               dotNavigationOutlineColor={
                 props.dotNavigationOutlineColor ?? "rgb(220,220,220,1)"
