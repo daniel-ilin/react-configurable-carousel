@@ -83,17 +83,17 @@ const Template: ComponentStory<typeof Carousel> = (args) => {
         </button>
         <button
           onClick={() => {
-            controllerRef.current && controllerRef.current.shiftRight();
-          }}
-        >
-          Custom Button: Shift Right
-        </button>
-        <button
-          onClick={() => {
             controllerRef.current && controllerRef.current.jumpToIndex(2);
           }}
         >
           Custom Button: Jump To Index 2{" "}
+        </button>
+        <button
+          onClick={() => {
+            controllerRef.current && controllerRef.current.shiftRight();
+          }}
+        >
+          Custom Button: Shift Right
         </button>
       </div>
     </span>

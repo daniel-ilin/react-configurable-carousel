@@ -24,7 +24,7 @@ type CarouselProps = {
   autoScrollInterval?: number;
   autoScrollClickDelay?: number;
   carouselStyle?: "flat" | "3d";
-  outOfFocusDarken?: boolean;
+  outOfFocusDarken?: boolean;  
 };
 
 export type CarouselControllerHandle = {
@@ -64,8 +64,7 @@ const Carousel = React.forwardRef<CarouselControllerHandle, CarouselProps>(
     useEffect(() => {
       let items = React.Children.map(props.children, (child, index) => {
         if (child) return child;
-      });
-
+      });      
       if (childrenCount === 2) items = items?.concat(items);
       setShowItems(items);
       setShowingIndex((prev) => {
