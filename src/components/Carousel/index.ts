@@ -1,1 +1,1 @@
-export { default } from "./CarouselComponents";
+export { default, CarouselControllerHandle } from "./CarouselComponents";

@@ -70,7 +70,7 @@ const controllerRef = useRef();
 #### TypeScript
 
 ```js
-import { CarouselControllerHandle } from "react-configurable-carousel;"
+import { CarouselControllerHandle } from "react-configurable-carousel"
 
 const controllerRef = useRef<CarouselControllerHandle>(null);
 
