@@ -1,10 +1,17 @@
 # react-configurable-carousel
 
-A simple and responsive configurable 2D/3D carousel React component to display anything you like!
+A simple and responsive configurable 2D/3D carousel React component to display anything you like! 
+
+<br/>
+
+<b>Latest Update:</b>
+
+Now you can use custom buttons to navigate the carousel! 
+[Jump to Section - Custom Buttons](#using-custom-elements-as-buttons)
+
+<br/>
 
 ### [Online Storybook Demo](https://daniel-ilin.github.io/react-configurable-carousel/?path=/story/carousel--first-story)
-
-## Examples
 
 ### 3D-Style
 
@@ -14,15 +21,13 @@ A simple and responsive configurable 2D/3D carousel React component to display a
 
 <img src="https://media0.giphy.com/media/gAF6DM0L4vfXhDKA8h/giphy.gif?cid=790b761175be94dd450583df7eb6bdf7057d3caa5ac00d75&rid=giphy.gif&ct=g" width="700" />
 
-## Get started
-
 ### Installation
 
 ```console
 npm install react-configurable-carousel
 ```
 
-### Example
+## Code Examples
 
 ```js
 import { Carousel } from "react-configurable-carousel";
@@ -41,6 +46,42 @@ import { Carousel } from "react-configurable-carousel";
     <h2>Hello, world!</h2>
   </span>
 </Carousel>;
+```
+
+### Using custom elements as buttons
+
+Carousel's navigation functionality can be exposed with `useRef` hook
+
+#### JavaScript
+
+```js
+const controllerRef = useRef();
+
+<Carousel
+  {...args}
+  ref={controllRef}
+>  
+  <Child/>
+</Carousel>;
+
+<button onClick={() => controllerRef.current.shiftLeft()}>Shift Left</button>
+```
+
+#### TypeScript
+
+```js
+import { CarouselControllerHandle } from "react-configurable-carousel;"
+
+const controllerRef = useRef<CarouselControllerHandle>(null);
+
+<Carousel
+  {...args}
+  ref={controllRef}
+>  
+  <Child/>
+</Carousel>;
+
+<button onClick={() => controllerRef.current.shiftLeft()}>Shift Left</button>
 ```
 
 ### Options
@@ -63,3 +104,19 @@ It takes the following props:
 | `autoScrollInterval?`        | `number`         | Time interval for auto-scro ll. Auto-scroll will be disabled if not specified |
 | `autoScrollClickDelay?`      | `number`         | Time delay for auto-scroll after user interacts with the carousel             |
 | `outOfFocusDarken?`      | `boolean`         | Whether the elements that are not currently selected will be darkened (Defaults to false)             |
+| `ref?`      | `React.RefObject<CarouselControllerHandle>`         | CarouselControllerHandle that exposes the Carousel navigation functionality |
+
+
+<br/>
+
+### Exposed navigation functionality
+Type `CarouselControllerHandle` has the following methods:
+<br/>
+<br/>
+
+| Property                     | Type             | Description                                                                   |
+| ---------------------------- | ---------------- | ----------------------------------------------------------------------------- |
+| `ShiftLeft`                     | `() => void`        | Shifts the carousel left from current position      |
+| `ShiftRight`                     | `() => void`        | Shifts the carousel right from current position    |
+| `JumpToIndex`                     | `(index: number) => void`        | Shifts the carousel to certain index |
+
