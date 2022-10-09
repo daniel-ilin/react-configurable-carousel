@@ -3,12 +3,13 @@
     width: 100%;
     overflow: hidden;
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: auto;    
+    background-color: blue;
 }
 
 .firstRowColumn {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 1;       
 }
 
 .overlay {

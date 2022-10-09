@@ -90,7 +90,7 @@ $z-index-animation-delay: 0.1s;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform $animation-time, width $animation-time, height $animation-time;
+    transition: transform $animation-time, width $animation-time, height $animation-time;    
 
     &.threed {
         width: 53%;

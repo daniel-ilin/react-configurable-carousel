@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof Carousel> = (args) => (
       src={imageUrls[0]}
       width="100%"
       height="100%"
-      style={{ objectFit: "cover" }}
+      style={{ objectFit: "cover", position: "relative" }}
     ></img>
     <div
       style={{
@@ -74,8 +74,7 @@ export const FirstStory = Template.bind({});
 FirstStory.args = {
   arrows: true,
   dotsNavigation: true,
-  width: "600px",
-  height: "400px",
+  width: "100%",
+  height: "300px",
   carouselStyle: "3d",
-  children: null,
 };
