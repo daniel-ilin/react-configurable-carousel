@@ -1,6 +1,6 @@
 {
   "name": "react-configurable-carousel",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "A simple and responsive configurable 2D/3D carousel React component",
   "homepage": "https://daniel-ilin.github.io/react-configurable-carousel/?path=/story/carousel--first-story",
   "keywords": [
@@ -69,7 +69,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-swipeable": "^7.0.0",
-    "sass": "^1.55.0"
+    "sass": "^1.55.0",
+    "postcss": "^8.4.16"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -77,8 +78,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/daniel-ilin/react-configurable-carousel.git"
-  },
-  "dependencies": {
-    "postcss": "^8.4.16"
   }
 }
